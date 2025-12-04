@@ -1,0 +1,116 @@
+.profile-dashboard {
+    padding: 20px;
+    font-family: "Outfit", sans-serif;
+}
+
+.profile-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #171a1f;
+    margin-bottom: 20px;
+}
+
+.profile-card {
+    display: flex;
+    gap: 40px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 30px;
+    align-items: center;
+}
+
+.profile-photo-section {
+    text-align: center;
+}
+
+.profile-photo-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f97316;
+}
+
+.default-avatar {
+    font-size: 150px;
+    color: #ccc;
+}
+
+.upload-icon-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #f97316;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: background-color 0.2s;
+}
+
+.upload-icon-btn:hover {
+    background-color: #ea580c;
+}
+
+.upload-controls {
+    margin-top: 10px;
+}
+
+.upload-controls button {
+    padding: 8px 16px;
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.upload-controls button:hover {
+    background-color: #16a085;
+}
+
+.profile-info-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.info-icon {
+    font-size: 24px;
+    color: #f97316;
+}
+
+.info-text h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #565d6d;
+    margin: 0;
+}
+
+.info-text p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #171a1f;
+    margin: 4px 0 0;
+}
