@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './../assets/css/login.css'; // Your CSS file
+import './../assets/css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import { 
@@ -17,11 +17,11 @@ const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    role: 'admin' // default role
+    role: 'admin'
   });
   const [showPassword, setShowPassword] = useState(false);
   const [captcha, setCaptcha] = useState('');
-  const [generatedCaptcha, setGeneratedCaptcha] = useState('9CCEH'); 
+  const [generatedCaptcha, setGeneratedCaptcha] = useState('9CCEH');
   const { email, password, role } = formData;
   const navigate = useNavigate();
 
@@ -29,12 +29,16 @@ const Login = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    
     if (captcha !== generatedCaptcha) {
       alert('Invalid CAPTCHA');
       return;
     }
+
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+      // 🔥 PORT UPDATED HERE (5000 ➝ 6000)
+      const res = await axios.post('http://localhost:8080/api/auth/login', formData);
+      
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
 
@@ -65,6 +69,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-container">
+        
         {/* Left Column */}
         <div className="branding-column">
           <div className="branding-content">
@@ -83,7 +88,9 @@ const Login = () => {
               <p className="school-text">School</p>
               <p className="school-subtext">Management <span>System</span></p>
             </div>
+
             <p className="login-title">Log in</p>
+
             <form onSubmit={onSubmit}>
               <div className="select-group input-with-icon">
                 <FontAwesomeIcon icon={faBuilding} className="input-icon" />
@@ -97,6 +104,7 @@ const Login = () => {
                   <option value="teacher">Teacher</option>
                 </select>
               </div>
+
               <div className="input-group input-with-icon">
                 <FontAwesomeIcon icon={faUser} className="input-icon" />
                 <input 
@@ -104,10 +112,11 @@ const Login = () => {
                   name="email" 
                   value={email} 
                   onChange={onChange} 
-                  placeholder="User ID" 
+                  placeholder="User ID"
                   required 
                 />
               </div>
+
               <div className="input-group password-group input-with-icon">
                 <FontAwesomeIcon icon={faLock} className="input-icon" />
                 <input 
@@ -115,15 +124,16 @@ const Login = () => {
                   name="password" 
                   value={password} 
                   onChange={onChange} 
-                  placeholder="Password" 
+                  placeholder="Password"
                   required 
                 />
                 <FontAwesomeIcon 
                   icon={showPassword ? faEyeSlash : faEye} 
                   className="password-toggle" 
-                  onClick={togglePasswordVisibility} 
+                  onClick={togglePasswordVisibility}
                 />
               </div>
+
               <div className="recaptcha-group">
                 <input 
                   type="text" 
@@ -136,11 +146,14 @@ const Login = () => {
                 <span className="captcha-text">{generatedCaptcha}</span>
                 <FontAwesomeIcon icon={faSyncAlt} className="refresh-captcha-icon" onClick={refreshCaptcha} />
               </div>
+
               <button type="submit" className="login-btn">Login</button>
               <a href="#" className="forgot-password">Forgot your password?</a>
             </form>
+
           </div>
         </div>
+
       </div>
     </div>
   );
