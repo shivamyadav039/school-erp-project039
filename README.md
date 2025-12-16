@@ -133,6 +133,24 @@ school-erp-project/
 | 🔗 LinkedIn | https://www.linkedin.com/in/shivam-yadav39/ |
 | 📧 Email | **shivamyadav7745@gmail.com** |
 
+# 1️⃣ Create a virtual environment
+python3 -m venv .venv
+
+# 2️⃣ Activate the virtual environment
+source .venv/bin/activate
+
+# 3️⃣ Install required dependencies
+pip install -r requirements.txt
+
+# 4️⃣ Create training image directory (if not exists)
+mkdir TrainingImage
+
+# 5️⃣ Run the Attendance Management System
+python3 attendance.py
+
+# 6️⃣ Deactivate the virtual environment
+deactivate
+
 
 
 ---
