@@ -39,22 +39,11 @@ It helps schools automate daily operations such as admissions, attendance, fees,
 
 ---
 ⚙️ Setup & Run Instructions
-# 1️⃣ Create a virtual environment
 python3 -m venv .venv
-
-# 2️⃣ Activate the virtual environment
 source .venv/bin/activate
-
-# 3️⃣ Install required dependencies
 pip install -r requirements.txt
-
-# 4️⃣ Create training image directory (if not exists)
-mkdir TrainingImage
-
-# 5️⃣ Run the Attendance Management System
+mkdir TrainingImage(if not exist)
 python3 attendance.py
-
-# 6️⃣ Deactivate virtual environment (after closing the app)
 deactivate
 
 ## 🧠 System Architecture
