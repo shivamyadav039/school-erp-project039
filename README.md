@@ -39,11 +39,11 @@ It helps schools automate daily operations such as admissions, attendance, fees,
 
 ---
 ⚙️ Setup & Run Instructions
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-mkdir TrainingImage(if not exist)
-python3 attendance.py
+python3 -m venv .venv,
+source .venv/bin/activate,
+pip install -r requirements.txt,
+mkdir TrainingImage(if not exist),
+python3 attendance.py,
 deactivate
 
 ## 🧠 System Architecture
