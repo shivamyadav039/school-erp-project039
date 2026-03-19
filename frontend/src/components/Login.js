@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../utils/axiosConfig';
 import './../assets/css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
 import { 
     faEye, 
     faEyeSlash, 
@@ -155,7 +154,7 @@ const Login = () => {
               </div>
 
               <button type="submit" className="login-btn">Login</button>
-              <a href="#" className="forgot-password">Forgot your password?</a>
+              <a href="#!" onClick={(e) => e.preventDefault()} className="forgot-password">Forgot your password?</a>
             </form>
 
           </div>

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../utils/axiosConfig';
 import './../assets/css/profile.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faEnvelope, faUserTag, faCamera, faUpload } from '@fortawesome/free-solid-svg-icons';
 
 const Profile = () => {
     const [user, setUser] = useState(null);

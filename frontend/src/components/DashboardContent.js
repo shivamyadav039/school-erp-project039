@@ -3,15 +3,13 @@ import axiosInstance from '../utils/axiosConfig';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserGraduate, faChalkboardTeacher, faCalendarAlt, faClipboardList, faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import './../assets/css/dashboard-content.css';
-import { faCalendarDays } from '@fortawesome/free-solid-svg-icons';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 
 const DashboardContent = () => {
   const [totalStudents, setTotalStudents] = useState(0);
   const [totalTeachers, setTotalTeachers] = useState(0);
   const [upcomingEventsCount, setUpcomingEventsCount] = useState(0);
   const [activeCoursesCount, setActiveCoursesCount] = useState(0);
-  const [currentDate, setCurrentDate] = useState('');
+  const currentDate = "September 24, 2025";
   const [upcomingFestivals, setUpcomingFestivals] = useState([]);
   const [isAnnouncementModalOpen, setIsAnnouncementModalOpen] = useState(false);
   const [announcementText, setAnnouncementText] = useState('');

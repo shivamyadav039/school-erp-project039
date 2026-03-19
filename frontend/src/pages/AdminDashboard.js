@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faUserGraduate, faChalkboardTeacher, faMoneyBillWave, faCog, faQuestionCircle, faChevronLeft, faChevronRight, faSearch, faBell, faEnvelope, faChevronDown, faSun, faMoon, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faUserGraduate, faChalkboardTeacher, faMoneyBillWave, faCog, faQuestionCircle, faChevronLeft, faChevronRight, faSearch, faEnvelope, faChevronDown, faSun, faMoon, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import './../assets/css/dashboard-content.css';
 import HelpSupportModal from '../components/HelpSupportModal';
 
