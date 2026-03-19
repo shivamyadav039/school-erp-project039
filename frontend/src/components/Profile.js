@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../utils/axiosConfig';
 import './../assets/css/profile.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle, faEnvelope, faUserTag, faCamera, faUpload } from '@fortawesome/free-solid-svg-icons';
@@ -11,12 +11,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const token = localStorage.getItem('token');
-                const res = await axios.get('http://localhost:5000/api/auth/me', {
-                    headers: {
-                        'x-auth-token': token
-                    }
-                });
+                const res = await axiosInstance.get('/auth/me');
                 setUser(res.data);
             } catch (err) {
                 console.error(err);
@@ -41,11 +36,9 @@ const Profile = () => {
         formData.append('photo', photo);
 
         try {
-            const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/auth/upload-photo', formData, {
+            await axiosInstance.post('/auth/upload-photo', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'x-auth-token': token
+                    'Content-Type': 'multipart/form-data'
                 }
             });
             alert('Photo uploaded successfully!');

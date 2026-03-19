@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../utils/axiosConfig';
 import './../assets/css/student.css'; // New: Import the stylesheet
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUser, faMars, faVenus } from '@fortawesome/free-solid-svg-icons';
@@ -45,10 +45,7 @@ const StudentManagement = () => {
 
   const fetchStudents = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/students', {
-        headers: { 'x-auth-token': token }
-      });
+      const res = await axiosInstance.get('/students');
       setStudents(res.data);
     } catch (err) {
       console.error(err);
@@ -61,10 +58,7 @@ const StudentManagement = () => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/students', formData, {
-        headers: { 'x-auth-token': token }
-      });
+      await axiosInstance.post('/students', formData);
       fetchStudents();
       setFormData({ studentId: '', name: '', email: '', phone: '', gender: 'Male', age: '', studentClass: '' });
     } catch (err) {

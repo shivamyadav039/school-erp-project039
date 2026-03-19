@@ -7,6 +7,9 @@ import StudentManagement from './components/StudentManagement';
 import TeacherManagement from './components/TeacherManagement';
 import Profile from './components/Profile';
 import DashboardContent from './components/DashboardContent'; // This component now has all the content
+import StudentDashboardPage from './pages/StudentDashboardPage';
+import StudentDashboard from './components/StudentDashboard';
+import FeeManagement from './components/FeeManagement';
 
 const App = () => {
   return (
@@ -20,7 +23,13 @@ const App = () => {
             <Route index element={<DashboardContent />} /> {/* Renders the content */}
             <Route path="students" element={<StudentManagement />} />
             <Route path="teachers" element={<TeacherManagement />} />
+            <Route path="fees" element={<FeeManagement />} />
             <Route path="profile" element={<Profile />} />
+          </Route>
+
+          <Route path="/student-dashboard" element={<StudentDashboardPage />}>
+            <Route index element={<StudentDashboard />} />
+            {/* Additional routes will go here as needed */}
           </Route>
 
           <Route path="*" element={<Navigate to="/login" />} />

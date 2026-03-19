@@ -1,28 +1,20 @@
 import React, { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faUserGraduate, faChalkboardTeacher, faMoneyBillWave, faCog, faQuestionCircle, faChevronLeft, faChevronRight, faSearch, faBell, faEnvelope, faChevronDown, faSun, faMoon, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faBook, faTasks, faUser, faQuestionCircle, faChevronLeft, faChevronRight, faSearch, faEnvelope, faChevronDown, faSun, faMoon, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import './../assets/css/dashboard-content.css';
 import HelpSupportModal from '../components/HelpSupportModal';
 
-const AdminDashboard = () => {
+const StudentDashboardPage = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const navigate = useNavigate();
 
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-  
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
-  
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-  };
+  const toggleSidebar = () => setIsCollapsed(!isCollapsed);
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -43,25 +35,21 @@ const AdminDashboard = () => {
           </button>
         </div>
         <nav className="sidebar-menu">
-          <NavLink to="/admin-dashboard" end className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
+          <NavLink to="/student-dashboard" end className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
             <FontAwesomeIcon icon={faTachometerAlt} />
             {!isCollapsed && <span>Dashboard</span>}
           </NavLink>
-          <NavLink to="/admin-dashboard/students" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
-            <FontAwesomeIcon icon={faUserGraduate} />
-            {!isCollapsed && <span>Student Management</span>}
+          <NavLink to="/student-dashboard/courses" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
+            <FontAwesomeIcon icon={faBook} />
+            {!isCollapsed && <span>My Courses</span>}
           </NavLink>
-          <NavLink to="/admin-dashboard/teachers" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
-            <FontAwesomeIcon icon={faChalkboardTeacher} />
-            {!isCollapsed && <span>Teacher Management</span>}
+          <NavLink to="/student-dashboard/assignments" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
+            <FontAwesomeIcon icon={faTasks} />
+            {!isCollapsed && <span>Assignments</span>}
           </NavLink>
-          <NavLink to="/admin-dashboard/fees" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
-            <FontAwesomeIcon icon={faMoneyBillWave} />
-            {!isCollapsed && <span>Fee Management</span>}
-          </NavLink>
-          <NavLink to="/admin-dashboard/courses" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
-            <FontAwesomeIcon icon={faCog} />
-            {!isCollapsed && <span>Courses</span>}
+          <NavLink to="/student-dashboard/profile" className={({ isActive }) => "sidebar-menu-item" + (isActive ? " selected" : "")}>
+            <FontAwesomeIcon icon={faUser} />
+            {!isCollapsed && <span>My Profile</span>}
           </NavLink>
         </nav>
         <div className="sidebar-footer">
@@ -80,7 +68,7 @@ const AdminDashboard = () => {
       <main className={`main-content ${isCollapsed ? 'full-width' : ''}`}>
         <header className="dashboard-header-main">
           <div className="search-bar-container">
-            <input type="text" placeholder="Search..." className="search-input" />
+            <input type="text" placeholder="Search" className="search-input" />
             <FontAwesomeIcon icon={faSearch} className="search-icon" />
           </div>
           <div className="header-right">
@@ -91,24 +79,24 @@ const AdminDashboard = () => {
             <div className="profile-dropdown-container">
               <div className="profile-trigger" onClick={toggleDropdown}>
                 <div className="profile-info-header">
-                  <p className="profile-name-header">Admin User</p>
-                  <p className="profile-role-header">Administrator</p>
+                  <p className="profile-name-header">Student User</p>
+                  <p className="profile-role-header">Grade 10</p>
                 </div>
                 <FontAwesomeIcon icon={faChevronDown} className="dropdown-arrow" />
               </div>
               {isDropdownOpen && (
                 <div className="dropdown-menu">
-                  <NavLink to="/admin-dashboard/profile" className="dropdown-item" onClick={toggleDropdown}>Profile</NavLink>
+                  <NavLink to="/student-dashboard/profile" className="dropdown-item" onClick={toggleDropdown}>Profile</NavLink>
                   <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                 </div>
               )}
             </div>
           </div>
         </header>
-        <Outlet /> {/* This is where DashboardContent will render */}
+        <Outlet /> {/* Renders StudentDashboard content */}
       </main>
     </div>
   );
 };
 
-export default AdminDashboard;
+export default StudentDashboardPage;

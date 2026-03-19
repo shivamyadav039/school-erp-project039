@@ -1,0 +1,95 @@
+.student-dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.student-banner {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.8), rgba(16, 185, 129, 0.8)) !important;
+  box-shadow: 0 10px 40px -10px var(--accent-color) !important;
+}
+
+.student-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.student-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+}
+
+.assignments-card, .progress-card {
+  padding: 30px;
+}
+
+.assignments-card h3, .progress-card h3 {
+  font-size: 20px;
+  margin-bottom: 25px;
+}
+
+.assignment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.assignment-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+}
+
+.assignment-list li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(5px);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(45, 212, 191, 0.2);
+}
+
+.due-date {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.progress-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-label {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.progress-bar-bg {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--accent-color);
+}

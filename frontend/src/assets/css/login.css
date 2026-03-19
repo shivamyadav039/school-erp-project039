@@ -1,252 +1,480 @@
-/* Overall Layout */
-body {
-  font-family: 'Open Sans', sans-serif; /* Keep Open Sans as primary for general text */
-  margin: 0;
-  padding: 0;
-  background: #f9f9f9;
+/* Ultra Premium Login Layout */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+  --primary-glow: rgba(99, 102, 241, 0.6);
+  --accent-glow: rgba(45, 212, 191, 0.6);
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background: #0f172a;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow: hidden;
+}
+
+/* Dynamic Animated Background */
 .login-page {
   display: flex;
   min-height: 100vh;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  position: relative;
+  z-index: 1;
 }
 
-.login-container { /* This wraps both columns to control the overall card shape */
-  display: flex;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  max-width: 1000px; /* Adjust as per desired overall width */
+.login-bg-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.shape {
+  position: absolute;
+  filter: blur(80px);
+  border-radius: 50%;
+  animation: float 20s infinite ease-in-out alternate;
+  opacity: 0.6;
+}
+
+.shape-1 {
+  top: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  bottom: -20%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: linear-gradient(135deg, #2dd4bf, #3b82f6);
+  animation-delay: -5s;
+}
+
+.shape-3 {
+  top: 40%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #f43f5e, #db2777);
+  animation-delay: -10s;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, 50px) scale(1.1); }
+  100% { transform: translate(-50px, -20px) scale(0.9); }
+}
+
+/* Glassmorphism Container */
+.login-container {
+  display: flex;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: skewX(-20deg);
+  animation: shine 6s infinite;
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
 }
 
 /* Left Column (Branding) */
 .branding-column {
-  flex: 1;
-  background: #fffdfd; /* Background color from the image */
+  flex: 1.2;
+  background: rgba(255, 255, 255, 0.03);
   display: flex;
-  flex-direction: column; /* To stack items vertically */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px;
+  padding: 50px;
   text-align: center;
+  border-right: 1px solid var(--glass-border);
+  position: relative;
 }
 
 .branding-content {
-  max-width: 380px; /* Controls the width of content within the column */
+  max-width: 420px;
+  z-index: 2;
 }
 
 .welcome-message {
-  font-family: 'Akaya Kanadaka', cursive; /* Specific font for "Welcome to" */
-  font-size: 28px;
-  font-weight: 400;
-  color: #19191F; /* Dark text color */
-  margin-bottom: 0px; /* Adjust spacing */
+  font-family: 'Outfit', sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 5px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .school-name {
-  font-family: 'Open Sans', sans-serif; /* Consistent font for school name */
-  font-size: 38px; /* Larger font size */
-  font-weight: 800; /* Bolder weight */
-  color: #000;
-  margin-top: 20px; /* Remove default margin */
-  margin-bottom: 5px ; /* Spacing below the name */
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #a5b4fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .illustration-image {
-  max-width: 90%; /* Adjust size relative to its container */
+  max-width: 100%;
   height: auto;
-  margin: 5px 0; /* Spacing around the image */
+  margin: 20px 0;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.4));
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.illustration-image:hover {
+  transform: translateY(-15px) scale(1.05);
 }
 
 .quote {
-  font-size: 15px;
+  font-size: 16px;
   font-style: italic;
-  color: #333;
-  margin: 5px 0 5px 0; /* Adjust quote spacing */
+  color: rgba(255, 255, 255, 0.7);
+  margin: 20px 0 10px 0;
+  line-height: 1.6;
 }
 
 .quote-author {
-  font-size: 13px;
-  color: #555;
+  font-size: 14px;
+  color: #2dd4bf;
+  font-weight: 600;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* Right Column (Form) */
 .form-column {
   flex: 1;
-  background: #fff;
+  background: rgba(15, 23, 42, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 25px;
+  padding: 50px 40px;
 }
 
 .login-form-container {
   width: 100%;
-  max-width: 360px; /* Max width for the form itself */
+  max-width: 380px;
+}
+
+.school-logo {
+  margin-bottom: 40px;
   text-align: center;
 }
 
-/* School Management System Title */
-.school-logo {
-  margin-bottom: 30px; /* Spacing below the logo section */
-}
-
 .school-text {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 50px; /* Larger size */
-  font-weight: 700; /* Bolder */
-  color: #000;
+  font-family: 'Outfit', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: #ffffff;
   margin: 0;
-  text-align: center; /* Align to the left as in the image */
+  letter-spacing: -1px;
 }
 
 .school-subtext {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 30px; /* Smaller for subtext */
-  font-weight: 400;
-  color: #1e40af; /* Blue for "Management" */
+  font-family: 'Outfit', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #94a3b8;
   margin: 0;
-  text-align: center; /* Align to the left */
 }
 
 .school-subtext span {
-  color: #e11d48; /* Red for "System" */
+  color: #6366f1;
+  font-weight: 700;
 }
 
-/* Login Title */
 .login-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #333;
-  margin: 15px 0 25px 0; /* Adjust spacing for "Log in" */
-  text-align: center; /* Align to the left */
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 30px 0;
+  text-align: left;
 }
 
-/* Inputs and Selects with Icons */
+/* Inputs */
 .input-with-icon {
-    position: relative;
-    margin-bottom: 12px;
+  position: relative;
+  margin-bottom: 22px;
 }
 
 .input-icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888; /* Icon color */
-    font-size: 14px;
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
-.office-select,
-.input-group input {
+.input-with-icon input,
+.input-with-icon select {
   width: 100%;
-  padding: 10px;
-  padding-left: 35px; /* Space for the icon */
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background-color: #f9fafb;
+  padding: 16px 16px 16px 48px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  font-size: 15px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  transition: all 0.3s ease;
+  outline: none;
   box-sizing: border-box;
-  font-size: 14px;
+}
+
+.input-with-icon input::placeholder {
+  color: #64748b;
+}
+
+.input-with-icon input:focus,
+.input-with-icon select:focus {
+  border-color: #6366f1;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15), 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.input-with-icon input:focus ~ .input-icon,
+.input-with-icon select:focus ~ .input-icon {
+  color: #6366f1;
+  transform: translateY(-50%) scale(1.1);
 }
 
 .office-select {
-    appearance: none; /* Remove default select arrow */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23999999%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1s-1.9%2011.3%200%2016.4l132%20146c3.2%203.5%207.6%205.4%2012.2%205.4s8.9-1.9%2012.2-5.4l132-146c3.1-3.5%203.8-8.9%201.9-13.8-1.9-4.9-6.1-8.1-11.6-8.1z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 10px;
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2394a3b8%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 16px;
+  cursor: pointer;
 }
 
-
-.password-group input {
-    padding-right: 40px; /* Space for the eye icon */
+.office-select option {
+  background-color: #1e293b;
+  color: #ffffff;
 }
 
+/* Password Toggle */
 .password-toggle {
   position: absolute;
-  right: 12px;
+  right: 18px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
-  color: #999;
-  font-size: 14px;
+  color: #64748b;
+  transition: color 0.3s ease;
+  z-index: 10;
+}
+
+.password-toggle:hover {
+  color: #6366f1;
 }
 
 /* Captcha */
 .recaptcha-group {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
-  gap: 10px; /* Space between captcha elements */
+  margin-bottom: 30px;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .captcha-input {
-  flex: 1; /* Takes available space */
-  padding: 10px;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  background-color: #f9fafb;
-  font-size: 14px;
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.captcha-input:focus {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.2);
 }
 
 .captcha-text {
-  font-family: monospace; /* Monospace for CAPTCHA text */
-  font-size: 16px; /* Slightly larger for readability */
-  font-weight: bold;
-  padding: 8px 12px; /* Adjusted padding */
-  background: #f3f4f6;
-  border-radius: 6px;
-  color: #333;
-  min-width: 70px;
-  text-align: center;
-  user-select: none; /* Prevent selection */
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(45, 212, 191, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: #2dd4bf;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.4);
+  user-select: none;
 }
 
 .refresh-captcha-icon {
-    font-size: 16px;
-    color: #888;
-    cursor: pointer;
-    margin-left: 5px; /* Space from captcha text */
+  font-size: 20px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 8px;
+  border-radius: 50%;
 }
 
 .refresh-captcha-icon:hover {
-    color: #f97316; /* Hover effect */
+  color: #2dd4bf;
+  transform: rotate(180deg) scale(1.1);
+  background: rgba(255, 255, 255, 0.05);
 }
-
 
 /* Login Button */
 .login-btn {
   width: 100%;
-  padding: 12px; /* Slightly larger padding */
+  padding: 16px;
   border: none;
-  border-radius: 6px;
-  background-color: #f97316; /* Orange color */
+  border-radius: 14px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
   color: white;
-  font-size: 16px; /* Slightly larger font */
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px -10px rgba(99, 102, 241, 0.5);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
 }
 
 .login-btn:hover {
-  background-color: #ea580c; /* Darker orange on hover */
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px -10px rgba(99, 102, 241, 0.7);
+}
+
+.login-btn:hover::before {
+  left: 100%;
+  animation: none;
+}
+
+.login-btn:active {
+  transform: translateY(0);
 }
 
 /* Forgot Password */
 .forgot-password {
   display: block;
-  margin-top: 15px; /* Adjusted margin */
-  font-size: 13px;
-  color: #f97316;
+  text-align: center;
+  margin-top: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #94a3b8;
   text-decoration: none;
+  transition: all 0.3s ease;
 }
 
 .forgot-password:hover {
-  text-decoration: underline;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .login-container {
+    flex-direction: column;
+    max-width: 500px;
+  }
+  
+  .branding-column {
+    padding: 40px 30px;
+    border-right: none;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  
+  .school-name {
+    font-size: 36px;
+  }
+  
+  .illustration-image {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-column {
+    padding: 30px 20px;
+  }
+  
+  .recaptcha-group {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .captcha-input {
+    min-width: 100%;
+    margin-bottom: 10px;
+  }
 }

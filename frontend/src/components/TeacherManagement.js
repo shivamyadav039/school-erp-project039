@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../utils/axiosConfig';
 import './../assets/css/student.css'; // Reusing the student stylesheet
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faUserTie, faVenus, faMars } from '@fortawesome/free-solid-svg-icons';
@@ -39,10 +39,7 @@ const TeacherManagement = () => {
 
   const fetchTeachers = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5000/api/teachers', {
-        headers: { 'x-auth-token': token }
-      });
+      const res = await axiosInstance.get('/teachers');
       setTeachers(res.data);
     } catch (err) {
       console.error(err);
@@ -55,10 +52,7 @@ const TeacherManagement = () => {
   const onSubmit = async e => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/teachers', formData, {
-        headers: { 'x-auth-token': token }
-      });
+      await axiosInstance.post('/teachers', formData);
       fetchTeachers();
       setFormData({ teacherId: '', name: '', email: '', phone: '', subject: '' });
     } catch (err) {
@@ -99,8 +93,6 @@ const TeacherManagement = () => {
           </div>
         </div>
       </div>
-
-      <hr />
 
       <div className="form-and-controls">
         <div className="add-student-form">

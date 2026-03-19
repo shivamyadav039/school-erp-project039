@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import axiosInstance from '../utils/axiosConfig';
 import './../assets/css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -36,8 +36,7 @@ const Login = () => {
     }
 
     try {
-      // 🔥 PORT UPDATED HERE (5000 ➝ 6000)
-      const res = await axios.post('http://localhost:8080/api/auth/login', formData);
+      const res = await axiosInstance.post('/auth/login', formData);
       
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('role', res.data.role);
@@ -46,6 +45,8 @@ const Login = () => {
         navigate('/admin-dashboard');
       } else if (res.data.role === 'teacher') {
         navigate('/teacher-dashboard');
+      } else if (res.data.role === 'student') {
+        navigate('/student-dashboard');
       }
     } catch (err) {
       if (err.response) {
@@ -68,6 +69,11 @@ const Login = () => {
 
   return (
     <div className="login-page">
+      <div className="login-bg-shapes">
+        <div className="shape shape-1"></div>
+        <div className="shape shape-2"></div>
+        <div className="shape shape-3"></div>
+      </div>
       <div className="login-container">
         
         {/* Left Column */}
@@ -102,6 +108,7 @@ const Login = () => {
                 >
                   <option value="admin">Admin</option>
                   <option value="teacher">Teacher</option>
+                  <option value="student">Student</option>
                 </select>
               </div>
 

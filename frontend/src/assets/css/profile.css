@@ -1,33 +1,57 @@
+/* Premium Glassmorphism Profile */
 .profile-dashboard {
     padding: 20px;
-    font-family: "Outfit", sans-serif;
+    font-family: var(--font-family-base);
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .profile-header h2 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #171a1f;
-    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 30px;
+    font-family: var(--font-family-heading);
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .profile-card {
     display: flex;
     gap: 40px;
-    background-color: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    padding: 30px;
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--glass-shadow);
+    padding: 40px;
     align-items: center;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-card::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 60%);
+    animation: pulse 10s infinite alternate;
+    z-index: 0;
 }
 
 .profile-photo-section {
     text-align: center;
+    z-index: 1;
 }
 
 .profile-photo-wrapper {
     position: relative;
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     margin: 0 auto 20px;
 }
 
@@ -36,81 +60,110 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid #f97316;
+    border: 4px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+    transition: transform 0.3s;
+}
+
+.profile-photo-wrapper:hover .profile-image {
+    transform: scale(1.05);
 }
 
 .default-avatar {
-    font-size: 150px;
-    color: #ccc;
+    font-size: 160px;
+    color: rgba(255, 255, 255, 0.2);
 }
 
 .upload-icon-btn {
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: #f97316;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    transition: background-color 0.2s;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .upload-icon-btn:hover {
-    background-color: #ea580c;
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 15px rgba(99, 102, 241, 0.8);
 }
 
 .upload-controls {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .upload-controls button {
-    padding: 8px 16px;
-    background-color: #1abc9c;
-    color: white;
-    border: none;
-    border-radius: 6px;
+    padding: 10px 20px;
+    background: rgba(45, 212, 191, 0.2);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    border-radius: var(--radius-md);
     cursor: pointer;
     font-size: 14px;
+    font-weight: 700;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .upload-controls button:hover {
-    background-color: #16a085;
+    background: var(--accent-color);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(45, 212, 191, 0.5);
 }
 
 .profile-info-section {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
+    z-index: 1;
 }
 
 .info-item {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 15px 20px;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.info-item:hover {
+    transform: translateX(10px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
 }
 
 .info-icon {
-    font-size: 24px;
-    color: #f97316;
+    font-size: 28px;
+    color: var(--primary-color);
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
 }
 
 .info-text h3 {
     font-size: 14px;
-    font-weight: 500;
-    color: #565d6d;
+    font-weight: 600;
+    color: var(--text-muted);
     margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .info-text p {
-    font-size: 16px;
-    font-weight: 600;
-    color: #171a1f;
-    margin: 4px 0 0;
+    font-family: var(--font-family-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin: 5px 0 0;
 }
